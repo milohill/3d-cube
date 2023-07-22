@@ -1,15 +1,73 @@
 <head>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
-
-<h1>My Cube</h1>
-<div class="container">
-  <div class="cube">
-    <div class="side front"></div>
-    <div class="side rear"></div>
-    <div class="side top"></div>
-    <div class="side bottom"></div>
-    <div class="side left"></div>
-    <div class="side right"></div>
+<body>
+  <div class="container-to-center">
+    <h1>My Cube</h1>
+    <div class="container">
+      <div class="cube">
+        <div class="side front"></div>
+        <div class="side rear"></div>
+        <div class="side top"></div>
+        <div class="side bottom"></div>
+        <div class="side left"></div>
+        <div class="side right"></div>
+      </div>
+    </div>
+    <div class="slider-container">
+      <h3>Controllers</h3>
+      <div class="slider perspective-slider">
+        <label for="perspective-input">Perspective</label>
+        <input
+          id="perspective-input"
+          type="range"
+          min="200"
+          max="1800"
+          step="10"
+          data-type="--perspectiveValue"
+          data-unit="px"
+          oninput="updateValue(this)"
+        />
+      </div>
+      <div class="slider vertical-slider">
+        <label for="vertical-input">Vertical</label>
+        <input
+          id="vertical-input"
+          type="range"
+          min="-200"
+          max="200"
+          step="10"
+          data-type="--originVertical"
+          data-unit="%"
+          oninput="updateValue(this)"
+        />
+      </div>
+      <div class="slider horizontal-slider">
+        <label for="horizontal-input">Horizontal</label>
+        <input
+          id="horizontal-input"
+          type="range"
+          min="-200"
+          max="200"
+          step="10"
+          data-type="--originHorizontal"
+          data-unit="%"
+          oninput="updateValue(this)"
+        />
+      </div>
+    </div>
   </div>
-</div>
+
+  <script>
+    function updateValue(obj) {
+      document.documentElement.style.setProperty(
+        obj.dataset.type,
+        obj.value + obj.dataset.unit
+      );
+      console.log(obj.value);
+    }
+    document.querySelector('#perspective-input').value = '1000';
+    document.querySelector('#vertical-input').value = '0';
+    document.querySelector('#horizontal-input').value = '0';
+  </script>
+</body>
