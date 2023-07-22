@@ -8,6 +8,12 @@ body {
   margin: au;
 }
 
+.container-to-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .slider {
   display: flex;
   justify-content: space-between;
@@ -15,14 +21,10 @@ body {
   gap: 10px;
 }
 
-.container-to-center {
+.slider-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
-}
-
-.slider-container {
-  padding: 10px;
+  gap: 5px;
 }
 
 .container {
@@ -33,10 +35,61 @@ body {
   width: 500px;
   height: 500px;
 
-  perspective: var(--perspectiveValue);
   perspective-origin: var(--originHorizontal) var(--originVertical);
 
   border: 1px solid black;
+}
+
+.container.with-perspective {
+  perspective: var(--perspectiveValue);
+}
+
+.controller-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.controller-container__inner-container {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.button-label {
+  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border: 1px solid black;
+  border-radius: 20px;
+
+  padding: 5px 10px 5px 10px;
+
+  width: 120px;
+}
+
+.button-label:hover {
+  background-color: lightgray;
+  cursor: pointer;
+}
+
+.button-label.checked {
+  background-color: black;
+  color: white;
+}
+
+.toggle-input {
+  display: none;
 }
 
 .cube {
@@ -46,7 +99,9 @@ body {
   height: 200px;
 
   transform-style: preserve-3d;
+}
 
+.cube.animated {
   animation: cubeRotate 5s ease-in-out infinite;
 }
 
@@ -65,7 +120,7 @@ body {
 
   position: absolute;
 
-  border: 5px solid white;
+  border: 2px solid white;
 }
 
 .front {

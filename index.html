@@ -14,46 +14,76 @@
         <div class="side right"></div>
       </div>
     </div>
-    <div class="slider-container">
+    <div class="controller-container">
       <h3>Controllers</h3>
-      <div class="slider perspective-slider">
-        <label for="perspective-input">Perspective</label>
-        <input
-          id="perspective-input"
-          type="range"
-          min="200"
-          max="1800"
-          step="10"
-          data-type="--perspectiveValue"
-          data-unit="px"
-          oninput="updateValue(this)"
-        />
-      </div>
-      <div class="slider vertical-slider">
-        <label for="vertical-input">Vertical</label>
-        <input
-          id="vertical-input"
-          type="range"
-          min="-200"
-          max="200"
-          step="10"
-          data-type="--originVertical"
-          data-unit="%"
-          oninput="updateValue(this)"
-        />
-      </div>
-      <div class="slider horizontal-slider">
-        <label for="horizontal-input">Horizontal</label>
-        <input
-          id="horizontal-input"
-          type="range"
-          min="-200"
-          max="200"
-          step="10"
-          data-type="--originHorizontal"
-          data-unit="%"
-          oninput="updateValue(this)"
-        />
+      <div class="controller-container__inner-container">
+        <div class="slider-container">
+          <div class="slider perspective-slider">
+            <label for="perspective-input">Perspective</label>
+            <input
+              id="perspective-input"
+              type="range"
+              min="200"
+              max="1800"
+              step="10"
+              data-type="--perspectiveValue"
+              data-unit="px"
+              oninput="updateValue(this)"
+            />
+          </div>
+          <div class="slider vertical-slider">
+            <label for="vertical-input">Vertical</label>
+            <input
+              id="vertical-input"
+              type="range"
+              min="-200"
+              max="200"
+              step="10"
+              data-type="--originVertical"
+              data-unit="%"
+              oninput="updateValue(this)"
+            />
+          </div>
+          <div class="slider horizontal-slider">
+            <label for="horizontal-input">Horizontal</label>
+            <input
+              id="horizontal-input"
+              type="range"
+              min="-200"
+              max="200"
+              step="10"
+              data-type="--originHorizontal"
+              data-unit="%"
+              oninput="updateValue(this)"
+            />
+          </div>
+        </div>
+        <div class="button-container">
+          <div class="button">
+            <label
+              class="button-label label-perspective"
+              for="toggle-perspective"
+              >Use perspective</label
+            >
+            <input
+              class="toggle-input"
+              id="toggle-perspective"
+              type="checkbox"
+              onchange="setPerspective(this)"
+            />
+          </div>
+          <div class="button">
+            <label class="button-label label-animation" for="toggle-animation"
+              >Use animation</label
+            >
+            <input
+              class="toggle-input"
+              id="toggle-animation"
+              type="checkbox"
+              onchange="setAnimation(this)"
+            />
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -65,6 +95,28 @@
         obj.value + obj.dataset.unit
       );
       console.log(obj.value);
+    }
+    function setPerspective(obj) {
+      const container = document.querySelector('.container');
+      const label = document.querySelector('.label-perspective');
+      if (obj.checked) {
+        container.classList.add('with-perspective');
+        label.classList.add('checked');
+      } else {
+        container.classList.remove('with-perspective');
+        label.classList.remove('checked');
+      }
+    }
+    function setAnimation(obj) {
+      const cube = document.querySelector('.cube');
+      const label = document.querySelector('.label-animation');
+      if (obj.checked) {
+        cube.classList.add('animated');
+        label.classList.add('checked');
+      } else {
+        cube.classList.remove('animated');
+        label.classList.remove('checked');
+      }
     }
     document.querySelector('#perspective-input').value = '1000';
     document.querySelector('#vertical-input').value = '0';
